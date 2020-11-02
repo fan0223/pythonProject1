@@ -1,0 +1,4 @@
+from translate import Translator
+translator = Translator(from_lang = 'Chinese', to_lang='english')
+result = translator.translate('我是誰')
+print(result)
