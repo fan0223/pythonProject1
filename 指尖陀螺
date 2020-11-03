@@ -1,0 +1,42 @@
+import  turtle as tu
+from turtle import *
+
+
+state = {'turn': 0}
+def spinner():
+    "Draw fidget spinner."
+    tu.clear()
+    angle = state['turn'] / 10
+    tu.right(angle)
+    tu.forward(100)
+    tu.dot(120, 'red')
+    tu.back(100)
+    tu.right(120)
+    tu.forward(100)
+    tu.dot(120, 'green')
+    tu.back(100)
+    tu.right(120)
+    tu.forward(100)
+    tu.dot(120,'blue')
+    tu.back(100)
+    tu.right(120)
+    tu.update()
+def animate():
+    "Animate fidget spinner."
+    if state['turn'] > 0:
+        state['turn'] -= 1
+
+    spinner()
+    ontimer(animate,20)
+def flick():
+    "Flick fidget spinner."
+    state['turn'] += 10
+
+tu.setup(420, 420, 370, 0)
+tu.hideturtle()
+tu.tracer(False)
+tu.width(20)
+tu.onkey(flick, 'z')
+tu.listen()
+animate()
+tu.done()
