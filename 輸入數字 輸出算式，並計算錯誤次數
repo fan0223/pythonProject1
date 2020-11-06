@@ -1,0 +1,43 @@
+import math
+#a,b由使用者輸入，如果有錯，讓使用者繼續重新輸入；每次犯錯都輸出累積的犯錯次數，最後成功完成工作時，要是曾經過錯，還要輸出一次犯錯次數
+# a/(a-b-1)
+# math.sqrt(a**2-b**2)
+# a**b
+count = 0
+while True:
+
+    try:
+        a = int(input('第一個數:'))
+        b = int(input('第二個數:'))
+        if a < b:
+            print('第一個數必須大於大二個數!')
+            count = count + 1
+            print('你犯了%d次錯誤!' % count)
+            continue
+        if a < 20 or b < 20:
+            print('每個數必須大於20!')
+            count = count + 1
+            print('你犯了%d次錯誤!' % count)
+            continue
+        print(f'{a:f} / ({a:f} -{b:f} -1)= {a/(a-b-1):f}')
+        print(f'math.sqrt({a:f}**2 - {b:f}**2) = {math.sqrt((a ** 2) - (b ** 2)):f}')
+        print(f'{a:f} ** {b:f}={a**b:f}')
+
+    except ValueError:
+        print('請使用半形的阿拉伯數字!')
+        count += 1
+        print('你犯了%d次錯誤!' % count)
+        continue
+    except ZeroDivisionError:
+        count += 1
+        print('除數不能為0!')
+        print('你犯了%d次錯誤!' % count)
+        continue
+    except OverflowError:
+        count += 1
+        print('你所輸入的數字太大了!')
+        print('你犯了%d次錯誤!' % count)
+        continue
+    print('你犯了%d次錯誤!' % count)
+    print('工作完成')
+    break
