@@ -1,0 +1,36 @@
+from tkinter import *
+
+root = Tk()
+root.title('測試視窗')
+root.geometry('300x150+0+0')
+def show():
+    inputtext1=entry1.get()
+    inputtext2=entry2.get()
+    lb3.config(None, text='使用者名稱:{}'.format(inputtext1))
+    lb4.config(None, text='密碼:{}'.format(inputtext2))
+
+
+frame1 = Frame(root)
+frame1.pack()
+
+frame2 = Frame(root)
+frame2.pack()
+
+lb1 = Label(frame1, text='使用者名稱', width=8)
+entry1 = Entry(frame1)
+lb1.pack(side=LEFT)
+entry1.pack(side=RIGHT)
+
+lb2 = Label(frame2, text='密碼', width=8)
+entry2 = Entry(frame2)
+lb2.pack(side=LEFT)
+entry2.pack(side=RIGHT)
+
+btn = Button(root, text='送出', width=30, command=show)
+btn.pack()
+lb3 = Label(root,  width=30, height=2)
+lb3.pack()
+lb4 = Label(root,  width=30, height=2)
+lb4.pack()
+
+root.mainloop()
