@@ -1,20 +1,34 @@
-from question_model import Question
-from data import question_data
-from quiz_brain import QuizBrain
+import time
+from turtle import Screen
+from player import Player
+from car_manager import CarManager
+from scoreboard import Scoreboard
 
-question_bank = []
+screen = Screen()
+screen.setup(width=600, height=600)
+screen.tracer(0)
+player = Player()
 
-for question in question_data:
-    question_text = question["text"]
-    question_answer = question["answer"]
-    new_question = Question(question_text, question_answer)
-    question_bank.append(new_question)
+screen.listen()
+screen.onkeypress(player.move, "Up")
+scoreboard = Scoreboard()
+
+game_is_on = True
+while game_is_on:
+    time.sleep(0.1)
+    screen.update()
+    car_manager = CarManager()
+    car_manager.car_move()
+
+    if player.ycor() > 270:
+        player.next_level()
+        scoreboard.level_update()
+
+    if player.distance(car_manager) < 20:
+        game_is_on = False
+        scoreboard.game_over()
 
 
-quiz = QuizBrain(question_bank)
 
-while quiz.still_has_questions():
-    quiz.next_question()
 
-print("You've completed the quiz")
-print(f"Your final score was:{quiz.score}/{len(question_bank)}")
+screen.exitonclick()
